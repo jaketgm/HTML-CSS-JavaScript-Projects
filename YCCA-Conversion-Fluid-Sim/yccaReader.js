@@ -25,7 +25,7 @@ const filename = 'output';
  *     is a raw binary data buffer in Node.js.
  * - The for loop iterates over the buffer:
  *   - The loop increments by 4 in each iteration, suggesting that each pixel 
- *     is represented by 4 bytes, likely corresponding to the YCbCrA 
+ *     is represented by 4 bytes, corresponding to the YCbCrA 
  *     (YCbCr with alpha) color space, where Y is the luma component 
  *     (brightness), Cb and Cr are the chroma components, and A is the 
  *     alpha (transparency).
