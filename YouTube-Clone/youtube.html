@@ -1,0 +1,216 @@
+<!--
+    @author Jake Brockbank
+    @version 1.0
+    @since 2023-12-05
+
+    Description: 
+      - This is my YouTube.com clone. 
+        It is a simple HTML/CSS project that I made 
+        to practice my skills.
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>YouTube.com Clone</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="stylesYT/general.css">
+        <link rel="stylesheet" href="stylesYT/header.css">
+        <link rel="stylesheet" href="stylesYT/video.css">
+        <link rel="stylesheet" href="stylesYT/sidebar.css">
+    </head>
+    <body>
+        <div class="header">
+            <div class="left-section">
+                <img class="hamburger-menu" src="icons/hamburger-menu.svg">
+                <img class="youtube-logo" src="icons/youtube-logo.svg">
+            </div>
+            <div class="middle-section">
+                <input class="search-bar" type="text" placeholder="Search">
+                <button class="search-button">
+                    <img class="search-icon" src="icons/search.svg">
+                    <div class="tooltip">Search</div>
+                </button>
+                <button class="voice-search-button">
+                    <img class="voice-search-icon" src="icons/voice-search-icon.svg">
+                    <div class="tooltip">Search with your voice</div>
+                </button>
+            </div>
+            <div class="right-section">
+                <div class="upload-icon-container">
+                    <img class="upload-icon" src="icons/upload.svg">
+                    <div class="tooltip">Create</div>
+                </div>
+                <img class="youtube-apps-icon" src="icons/youtube-apps.svg">
+                <div class="notifications-icon-container">
+                    <img class="notifications-icon" src="icons/notifications.svg">
+                    <div class="notifications-count">3</div>
+                </div>
+                <img class="current-user-picture" src="channel-pictures/my-channel.jpeg">
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="sidebar-link">
+                <img src="icons/home.svg">
+                <div>Home</div>
+            </div>
+            <div class="sidebar-link">
+                <img src="icons/explore.svg">
+                <div>Explore</div>
+            </div>
+            <div class="sidebar-link">
+                <img src="icons/subscriptions.svg">
+                <div>Subscriptions</div>
+            </div>
+            <div class="sidebar-link">
+                <img src="icons/originals.svg">
+                <div>Originals</div>
+            </div>
+            <div class="sidebar-link">
+                <img src="icons/youtube-music.svg">
+                <div>YouTube Music</div>
+            </div>
+            <div class="sidebar-link">
+                <img src="icons/library.svg">
+                <div>Library</div>
+            </div> 
+        </div>
+        
+        <div class="video-grid">
+            <div class="video-preview">
+                <div class="thumbnail-row">
+                    <img class="thumbnail" src="thumbnails/thumbnail-1.webp">
+                </div>
+                <div class="video-info-grid">
+                    <div class="channel-picture">
+                        <img class="profile-picture" src="channel-pictures/channel-1.jpeg">
+                    </div>
+                    <div class="video-info">
+                        <p class="video-title">
+                            When you're an engineer in the Star Wars Universe
+                        </p>
+                        <p class="video-author">
+                            Zach Star
+                        </p>
+                        <p class="video-stats">
+                            3.4M views &#183; 6 months ago
+                        </p>
+                    </div>
+                </div>   
+            </div>
+    
+            <div class="video-preview">
+                <div class="thumbnail-row">
+                    <img class="thumbnail" src="thumbnails/thumbnail-2.webp">
+                </div>
+                <div class="video-info-grid">
+                    <div class="channel-picture">
+                        <img class="profile-picture" src="channel-pictures/channel-2.jpeg">
+                    </div>
+                    <div class="video-info">
+                        <p class="video-title">
+                            100 integrals (almost 9 hours nonstop)
+                        </p>
+                        <p class="video-author">
+                            blackpenredpen
+                        </p>
+                        <p class="video-stats">
+                            19M views &#183; 4 years ago
+                        </p>
+                    </div>
+                </div>   
+            </div>
+    
+            <div class="video-preview">
+                <div class="thumbnail-row">
+                    <img class="thumbnail" src="thumbnails/thumbnail-3.webp">
+                </div>
+                <div class="video-info-grid">
+                    <div class="channel-picture">
+                        <img class="profile-picture" src="channel-pictures/channel-3.jpeg">
+                    </div>
+                    <div class="video-info">
+                        <p class="video-title">
+                            The ULTIMATE BLOCK DESIGN TUTORIAL! (GD Geometry dash 2.113)
+                        </p>
+                        <p class="video-author">
+                            Vit12
+                        </p>
+                        <p class="video-stats">
+                            12M views &#183; 1 year ago
+                        </p>
+                    </div>
+                </div>   
+            </div>
+    
+            <div class="video-preview">
+                <div class="thumbnail-row">
+                    <img class="thumbnail" src="thumbnails/thumbnail-4.webp">
+                </div>
+                <div class="video-info-grid">
+                    <div class="channel-picture">
+                        <img class="profile-picture" src="channel-pictures/channel-4.jpeg">
+                    </div>
+                    <div class="video-info">
+                        <p class="video-title">
+                            Hard FLIP Challenges at a NEW GYM!
+                        </p>
+                        <p class="video-author">
+                            FliplikeZ
+                        </p>
+                        <p class="video-stats">
+                            18M views &#183; 4 months ago
+                        </p>
+                    </div>
+                </div>   
+            </div>
+    
+            <div class="video-preview">
+                <div class="thumbnail-row">
+                    <img class="thumbnail" src="thumbnails/thumbnail-5.webp">
+                </div>
+                <div class="video-info-grid">
+                    <div class="channel-picture">
+                        <img class="profile-picture" src="channel-pictures/channel-5.jpeg">
+                    </div>
+                    <div class="video-info">
+                        <p class="video-title">
+                            MoistCr1tikal Reacts To Discords Most Disgusting Server By Tuv
+                        </p>
+                        <p class="video-author">
+                            penguinz0
+                        </p>
+                        <p class="video-stats">
+                            519K views &#183; 5 years ago
+                        </p>
+                    </div>
+                </div>   
+            </div>
+    
+            <div class="video-preview">
+                <div class="thumbnail-row">
+                    <img class="thumbnail" src="thumbnails/thumbnail-6.webp">
+                </div>
+                <div class="video-info-grid">
+                    <div class="channel-picture">
+                        <img class="profile-picture" src="channel-pictures/channel-6.jpeg">
+                    </div>
+                    <div class="video-info">
+                        <p class="video-title">
+                            We Paid Fiverr VFX Artists $10,000 to do this…
+                        </p>
+                        <p class="video-author">
+                            Cold Ones
+                        </p>
+                        <p class="video-stats">
+                            141M views &#183; 1 year ago
+                        </p>
+                    </div>
+                </div>   
+            </div>
+        </div>
+    </body>
+</html>
