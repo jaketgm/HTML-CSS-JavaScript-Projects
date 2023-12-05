@@ -1,0 +1,48 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+td {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #000;
+}
+
+.thicker-line {
+    border: 4px solid #000;
+}
+
+.red-cell {
+    background-color: red;
+}
+
+.container-input {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Center the text inside labels and center the input elements and button horizontally */
+.container-input label {
+    display: block;
+    text-align: center; /* Center the text inside the labels */
+}
+
+.container-input input, .container-input button {
+    display: block;
+    margin: 0.5rem auto; /* Center them horizontally */
+}

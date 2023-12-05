@@ -1,0 +1,43 @@
+<!--
+    @author Jake Brockbank
+    @version 1.0
+    @since 2023-12-05
+
+    Description: 
+      - This is the main page of the website.
+        It displays the graph, and a prompt
+        to enter two dots to check if they are
+        connected. Via Quick Find.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Quick Find Visualization</title>
+        <link rel="stylesheet" type="text/css" href="./Css/style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div id="redDotValues" style="margin-top: 10rem;">
+                <h2>Set of Red Dot Values (Note Coordinates are of the Form (y,x)):</h2>
+                <div id="redDotCoords"></div>
+            </div>
+            <button onclick="grid()" style="margin-top: 2rem;">Generate Random Grid</button>
+
+            <div class="container-input">
+                <label for="dotOne">Dot One:</label>
+                <input type="text" id="dotOne" name="dotOne">
+                <label for="dotTwo">Dot Two:</label>
+                <input type="text" id="dotTwo" name="dotTwo">
+                <button onclick="checkConnected()">Check Connected</button>
+            </div>
+            <div class="grid-container">
+                <svg width="500" height="500"></svg>
+            </div>
+        </div>
+
+        <script src="Js/script.js"></script>
+    </body>
+</html>
