@@ -1,0 +1,115 @@
+<!--
+    @author Jake Brockbank
+    @version 1.0
+    @since 2023-12-05
+
+    Description: 
+      - This is the main page of the website.
+        It showcases a simple, yet clean, settings
+        page for the user to interact with.
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>General Settings</title>
+        <link rel="stylesheet" href="./Css/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Bellefair&family=Barlow:wght@400;700&display=swap"
+        rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div>
+                <h1>Settings</h1>
+            </div>
+            <div>
+                <div>
+                    <label for="togg-1" class="togg-label">
+                        <span>Dark Mode</span>
+                        <input type="checkbox" id="togg-1">
+                        <div class="toggle-container">
+                            <span class="toggle"></span>
+                            <span class="toggle-c"></span>
+                        </div>
+                    </label>
+                </div>
+                <div>
+                    <label for="togg-2" class="togg-label">
+                        <span>Desktop Notifications</span>
+                        <input type="checkbox" id="togg-2">
+                        <div class="toggle-container">
+                            <span class="toggle"></span>
+                            <span class="toggle-c"></span>
+                        </div>
+                    </label>
+                </div>
+                <div>
+                    <label for="togg-3" class="togg-label">
+                        <span>Focused Inbox</span>
+                        <input type="checkbox" id="togg-3">
+                        <div class="toggle-container">
+                            <span class="toggle"></span>
+                            <span class="toggle-c"></span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <h1>Conservation View</h1>
+                </div>
+
+                <div>
+                    <label for="radio1" class="flex">
+                        <input type="radio" name="filter" id="radio1">
+                        <span>Newest on Top</span>
+                    </label>
+                </div>
+                <div>
+                    <label for="radio2" class="flex">
+                        <input type="radio" name="filter" id="radio2">
+                        <span>Newest on Bottom</span>
+                    </label>
+                </div>
+                <div>
+                    <label for="radio3" class="flex">
+                        <input type="radio" name="filter" id="radio3">
+                        <span>Off</span>
+                    </label>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <h3>Reading Pannel</h3>
+                </div>
+
+                <div>
+                    <label for="radio4" class="flex">
+                        <input type="radio" name="Show-Mode" id="radio4">
+                        <span>Show On The Right</span>
+                    </label>
+                </div>
+                <div>
+                    <label for="radio5" class="flex">
+                        <input type="radio" name="Show-Mode" id="radio5">
+                        <span>Show On The Left</span>
+                    </label>
+                </div>
+                <div>
+                    <label for="radio6" class="flex">
+                        <input type="radio" name="Show-Mode" id="radio6">
+                        <span>Off</span>
+                    </label>
+                </div>
+            </div>
+            <div class="bottom">
+                <input class="button-24" type="button" value="Back" onclick="history.back()">
+            </div>
+        </div>
+    </body>
+</html>

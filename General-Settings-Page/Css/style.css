@@ -1,0 +1,136 @@
+body, html {
+    background: rgb(49,34,138);
+    background: radial-gradient(circle, rgba(49,34,138,1) 0%, rgba(7,8,9,1) 100%);
+    color: #171730;
+    user-select: none;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    box-sizing: border-box;
+    background-color: #EBEBFB;
+    padding: 10px 50px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgb(200, 200, 200);
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+h1, h3 {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 600;
+}
+
+span {
+    font-weight: 500;
+    font-family: "Bellefair", serif;
+}
+
+.toggle-container {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+}
+
+.toggle {
+    width: 60px;
+    height: 35px;
+    border-radius: 40px;
+    background-color: rgb(49,34,138);
+    display: inline-block;
+}
+
+.toggle-c {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: white;
+    display: inline-block;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    transition: 300ms all;
+    border: 1px solid #8C8CA4;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"]:checked + div .toggle-c {
+    left: 30px;
+    background-color: #9494ca;
+    border-color: #9494ca;
+}
+
+input[type="radio"] {
+    border: 0px;
+    width: 10%;
+    height: 20px;
+    accent-color: black;
+}
+
+.togg-label {
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+}
+
+.flex {
+    display: flex;
+    gap: 5px;
+}
+
+.bottom {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.bottom:hover {
+    text-decoration: underline;
+}
+
+label, input[type="radio"] {
+    cursor: pointer;
+}
+
+.button-24 {
+    background: #7c6e9f;
+    border: 1px solid #7c6e9f;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 16px;
+    min-height: 40px;
+    outline: 0;
+    padding: 12px 14px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+}
+
+.button-24:hover,
+.button-24:active {
+    background-color: initial;
+    background-position: 0 0;
+    color: #7c6e9f;
+}
+
+.button-24:active {
+    opacity: .5;
+}
