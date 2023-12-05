@@ -425,7 +425,7 @@
      * - Setting the Cell's Pressure:
      *   - The function then sets the cell's pressure (cell_data.pressure) to 
      *     be one-fourth of the sum of pressure_x and pressure_y. This average 
-     *     is likely used to normalize the pressure value based on the 
+     *     is used to normalize the pressure value based on the 
      *     contributions from both axes.
      *
      * Input: cell_data.
