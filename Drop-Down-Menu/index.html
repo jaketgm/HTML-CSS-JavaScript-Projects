@@ -1,0 +1,93 @@
+<!--
+    @author Jake Brockbank
+    @version 1.0
+    @since 2023-12-05
+
+    Description: 
+      - Document Structure: 
+        - <!DOCTYPE html> declares the document type and HTML version (HTML5).
+        - <html lang="en"> is the root element of the page and specifies the 
+          language as English.
+        - The <head> section includes metadata, the page title, and a link to 
+          an external CSS file for styling.
+      - Metadata:
+        - <meta charset="UTF-8"> sets the character encoding to UTF-8, which 
+          includes most characters from all known languages.
+        - <meta http-equiv="X-UA-Compatible" content="IE=edge"> tells Internet 
+          Explorer to use the latest rendering engine.
+        - <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+          ensures the page is responsive and scales properly on different devices.
+      - Page Title:
+        - <title>Drop Down Menu</title> sets the title of the webpage, which 
+          appears in the browser tab.
+      - External Resources:
+        - <link rel="stylesheet" href="css/style.css"> links an external CSS 
+          file located in a css directory for styling the HTML elements.
+      - Body Content:
+        - The <body> contains the visible content of the HTML document.
+        - A div with the class hero probably serves as a prominent section of 
+          the page, such as a banner or introductory section.
+        - Inside the hero div, there's another div with the class 
+          primary-navigation-selector, which likely serves as a container for 
+          the dropdown menu.
+      - Dropdown Menu:
+        - A div with the ID primary-navigation-selectColor contains a 
+          paragraph (<p>) with the ID selectText and an image (<img>) with the 
+          ID arrowIcon. The paragraph displays the default text for the 
+          dropdown menu, and the image is probably used as a visual indicator 
+          (like a downward arrow) to signify that it's a dropdown menu.
+        - A ul element with the ID list and class hide represents the dropdown 
+          list that is initially hidden (as suggested by the class name). This 
+          list contains multiple li elements with the class options, each 
+          representing a different color option. Some list items have a 
+          label with a class swatch, which might be used to display a color 
+          sample.
+      - JavaScript Functionality:
+        - <script src="js/script.js"></script> links an external JavaScript 
+          file that contains the logic to handle the dropdown behavior. This 
+          script likely handles click events on the dropdown menu to toggle 
+          the visibility of the list and change the text of the selected item, 
+          as well as rotate the arrow icon to indicate the menu's open or 
+          closed state.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Drop Down Menu</title>
+        <link rel="stylesheet" href="Css/style.css">
+    </head>
+    <body>
+        <div class="hero">
+            <div class="primary-navigation-selector">
+                <div id="primary-navigation-selectColor">
+                    <p id="selectText">Select Different Color</p>
+                    <img src="./Assets/arrow2.png" id="arrowIcon">
+                </div>
+
+                <ul id="list" class="hide">
+                    <li class="options">
+                        <p>Color 1</p>
+                    </li>
+                    <li class="options">
+                        <label for="gold" class="swatch"></label>
+                        <p>Color 2</p>
+                    </li>
+                    <li class="options">
+                        <label for="space-black" class="swatch"></label>
+                        <p>Color 3</p>
+                    </li>
+                    <li class="options">
+                        <label for="silver" class="swatch"></label>
+                        <p>Color 4</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <script src="Js/script.js"></script>
+    </body>
+</html>
