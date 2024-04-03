@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body, canvas {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background: linear-gradient(to bottom, rgba(8, 13, 40, 1) 0%, rgba(38, 19, 0, 1) 100%);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        var config = {
+            canvas: null,
+            ctx: null,
+            width: 0,
+            height: 0,
+            pixelRatio: window.devicePixelRatio || 1,
+            particleColor: [80, 175, 255, 0.5],
+            rainSpeed: 1,
+            timeSinceLastDrop: 0,
+            delayBetweenDrops: 25,
+            hasStarted: false,
+            windSpeed: 4,
+            rainColor: null,
+            rainColorClear: null,
+            rainParticles: [],
+            rainCollections: [],
+            drops: [],
+            dropsCollection: []
+        };
+
+        class Rain 
+        {
+            constructor()
+            {
+                this.x = 0;
+                this.y = 0;
+                this.z = 0;
+                this.rainSpeed = 25;
+                this.hasSplashed = false;
+            }
+
+            static width = 2;
+            static height = 40;
+
+            init()
+            {
+                this.y = Math.random() * -100;
+                this.z = Math.random() * 0.5 + 0.5;
+                this.hasSplashed = false;
+            }
+
+            addToRainCollections()
+            {
+                config.rainCollections.push(this);
+            }
+
+            splashZone()
+            {
+                if (!this.hasSplashed)
+                {
+                    this.hasSplashed = true;
+                    const droplets = config.drops;
+                    const dropsCollection = config.dropsCollection;
+
+                    Array.from({ length: 16 }, () => {
+                        const droplet = dropsCollection.pop() || new Droplet();
+                        droplets.push(droplet);
+                        droplet.init(this.x);
+                    });
+                }
+            }
+        }
+
+        class Droplet 
+        {
+            constructor()
+            {
+                this.x = 0;
+                this.y = 0;
+                this.radius = Math.round(Math.random() * 2 + 1) * config.pixelRatio;
+                this.speedX = 0;
+                this.speedY = 0;
+                this.canvas = document.createElement('canvas');
+                this.ctx = this.canvas.getContext('2d');
+
+                const diameter = this.radius * 2;
+                this.canvas.width = diameter;
+                this.canvas.height = diameter;
+
+                const grid = this.ctx.createRadialGradient(this.radius, this.radius, 1, this.radius, this.radius, this.radius);
+                grid.addColorStop(0, config.rainColor);
+                grid.addColorStop(1, config.rainColorClear);
+                this.ctx.fillStyle = grid;
+                this.ctx.fillRect(0, 0, diameter, diameter);
+            }
+
+            static maxSpeed = 5;
+
+            init(x)
+            {
+                this.x = x;
+                this.y = config.height;
+                const angle = Math.random() * Math.PI - (Math.PI * 0.5);
+                const speed = Math.random() * Droplet.maxSpeed;
+                this.speedX = Math.sin(angle) * speed;
+                this.speedY = -Math.cos(angle) * speed;
+            }
+
+            addToRainCollections()
+            {
+                config.dropsCollection.push(this);
+            }
+        }
+
+        config.mouseHandler = function(event)
+        {
+            config.updateCursor(event.clientX, event.clientY);
+        }
+
+        config.touchHandler = function(event)
+        {
+            event.preventDefault();
+            var touch = event.touches[0];
+            config.updateCursor(touch.clientX, touch.clientY);
+        }
+
+        config.updateCursor = function(x, y)
+        {
+            x /= config.width;
+            y /= config.height;
+            var yInverse = (1 - y);
+
+            config.delayBetweenDrops = yInverse * yInverse * yInverse * 100 + 2;
+            config.windSpeed = (x - 0.5) * 50;
+        }
+
+        document.addEventListener('mousemove', config.mouseHandler);
+        document.addEventListener('touchstart', config.touchHandler);
+        document.addEventListener('touchmove', config.touchHandler);
+
+        const Keeper = {
+            hasStarted: false,
+            lastTimestamp: 0,
+            listeners: [],
+
+            listenerCaller(fn)
+            {
+                if (typeof fn !== 'function')
+                {
+                    throw new Error('Keeper.listenerCaller() requires a function reference passed in.');
+                }
+                this.listeners.push(fn);
+
+                if (!this.hasStarted)
+                {
+                    this.hasStarted = true;
+                    this.scheduleFrame();
+                }
+            },
+
+            scheduleFrame()
+            {
+                window.requestAnimationFrame ? requestAnimationFrame(this.handleFrames.bind(this)) : webkitRequestAnimationFrame(this.handleFrames.bind(this));
+            },
+
+            handleFrames(timestamp)
+            {
+                let timeOfFrame = timestamp - this.lastTimestamp;
+                this.lastTimestamp = timestamp;
+                timeOfFrame = timeOfFrame < 0 ? 17 : timeOfFrame > 68 ? 68 : timeOfFrame;
+
+                this.listeners.forEach((listener) => {
+                    listener.call(window, timeOfFrame, timeOfFrame / 16.67);
+                });
+
+                this.scheduleFrame();
+            }
+        };
+
+        document.addEventListener("DOMContentLoaded", function() {
+            config.init();
+            window.addEventListener('resize', config.resize);
+        });
+
+        config.init = function() {
+            if (!config.hasStarted) 
+            {
+                config.hasStarted = true;
+                config.canvas = document.getElementById('canvas');
+                config.ctx = config.canvas.getContext('2d');
+                var c = config.particleColor; // Use particleColor instead of color
+                var r, g, b, a;
+
+                if (c && c.length >= 4) {
+                r = c[0]; // Assign the appropriate index for the red component
+                g = c[1]; // Assign the appropriate index for the green component
+                b = c[2]; // Assign the appropriate index for the blue component
+                a = c[3]; // Assign the appropriate index for the alpha component
+                } else {
+                // Set default values if config.particleColor is not defined or doesn't have the expected structure
+                r = 80;
+                g = 175;
+                b = 255;
+                a = 0.5;
+                }
+
+                config.rainColor = 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
+                config.rainColorClear = 'rgba(' + r + ',' + g + ',' + b + ',0)';
+                config.resize();
+                Keeper.listenerCaller(config.step);
+            }
+        }
+
+        config.resize = function()
+        {
+            var rainParticles = config.rainParticles;
+            var drops = config.drops;
+
+            rainParticles.forEach((r) => {
+                r.addToRainCollections();
+            });
+            rainParticles.length = 0;
+
+            drops.forEach((d) => {
+                d.addToRainCollections();
+            });
+            drops.length = 0;
+
+            config.width = window.innerWidth;
+            config.height = window.innerHeight;
+            config.canvas.width = config.width * config.pixelRatio;
+            config.canvas.height = config.height * config.pixelRatio;
+        }
+
+        config.step = function(time, lag) 
+        {
+            const { rainSpeed, width, height, windSpeed, rainParticles, rainCollections, drops, dropsCollection } = config;
+
+            var multiplier = rainSpeed * lag;
+
+            config.timeSinceLastDrop += time * rainSpeed;
+            do {
+                config.timeSinceLastDrop -= config.delayBetweenDrops;
+                var newRain = rainCollections.pop() || new Rain();
+                newRain.init();
+                var expansion = Math.abs(height / newRain.rainSpeed * windSpeed);
+                var xSpawn = Math.random() * (width + expansion);
+                if (windSpeed > 0) xSpawn -= expansion;
+                newRain.x = xSpawn;
+                rainParticles.push(newRain);
+            } while (config.timeSinceLastDrop > config.delayBetweenDrops);
+
+            rainParticles.forEach((r, i) => {
+                r.y += r.rainSpeed * r.z * multiplier;
+                r.x += r.z * windSpeed * multiplier;
+
+                if (r.y > height) r.splashZone();
+
+                if (r.y > height + Rain.height * r.z || (windSpeed < 0 && r.x < windSpeed) || (windSpeed > 0 && r.x > width + windSpeed))
+                {
+                    r.addToRainCollections();
+                    rainParticles.splice(i, 1);
+                }
+            });
+
+            var maxSpeed = Droplet.maxSpeed;
+            drops.forEach((d, index) => {
+                d.x += d.speedX * multiplier;
+                d.y += d.speedY * multiplier;
+                d.speedY += 0.3 * multiplier;
+                d.speedX += windSpeed / 25 * multiplier;
+
+                d.speedX = (d.speedX < -maxSpeed) ? -maxSpeed : (d.speedX > maxSpeed) ? maxSpeed : d.speedX;
+
+                if (d.y > height + d.radius)
+                {
+                    d.addToRainCollections();
+                    drops.splice(index, 1);
+                }
+            });
+
+            config.draw();
+        }
+
+        config.draw = function()
+        {
+            const { width, height, pixelRatio, rainParticles, drops, ctx } = config;
+
+            ctx.clearRect(0, 0, width * pixelRatio, height * pixelRatio);
+
+            ctx.beginPath();
+            var heightOfRain = Rain.height * pixelRatio;
+
+            rainParticles.forEach(function(r) {
+                var realX = r.x * pixelRatio;
+                var realY = r.y * pixelRatio;
+                ctx.moveTo(realX, realY);
+                ctx.lineTo(realX - config.windSpeed * r.z * pixelRatio * 1.5, realY - heightOfRain * r.z);
+            });
+
+            ctx.lineWidth = Rain.width * pixelRatio;
+            ctx.strokeStyle = config.rainColor;
+            ctx.stroke();
+
+            drops.forEach(function(d) {
+                var realX = d.x * pixelRatio - d.radius;
+                var realY = d.y * pixelRatio - d.radius;
+                ctx.drawImage(d.canvas, realX, realY);
+            });
+        }
+    </script>
+    
+</body>
+</html>
