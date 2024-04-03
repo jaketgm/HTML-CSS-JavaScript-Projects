@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/mySite_favicon-32x32.png">
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Bellefair&family=Barlow:wght@400;700&display=swap"
+      rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      
+  <!-- Our custom CSS -->
+  <link rel="stylesheet" href="index.css">
+  <title>My Site</title>
+  <script src="navigation.js" defer></script>
+  <script src="tabs.js" defer></script>
+</head>
+
+<body class="About">
+  <!-- <a class="skip-to-content" href="#main">Skip to content</a> -->
+  <header class="primary-header flex">
+    <div>
+      <img src="./assets/shared/logo.svg" alt="space tourism logo" class="logo">
+    </div>
+    <button class="mobile-nav-toggle" aria-controls="primary-navigation"><span class="sr-only" aria-expanded="false">Menu</span></button>
+    <nav>
+        <ul id="primary-navigation" data-visible="false" class="primary-navigation underline-indicators flex">
+          <li><a class="ff-sans-cond uppercase text-white letter-spacing-2" href="index.html"><span aria-hidden="true">00</span>Home</a>
+          <li class="active"><a class="ff-sans-cond uppercase text-white letter-spacing-2" href="About.html"><span aria-hidden="true">01</span>About</a>
+          <li><a class="ff-sans-cond uppercase text-white letter-spacing-2" href="Education.html"><span aria-hidden="true">02</span>Education</a>
+          <li><a class="ff-sans-cond uppercase text-white letter-spacing-2" href="Sports.html"><span aria-hidden="true">03</span>Sports</a>
+        </ul>
+    </nav>
+  </header>
+  
+  <main id="main" class="grid-container grid-container--About flow">
+    <h1 class="numbered-title"><span aria-hidden="true">01</span> Pick your path</h1>
+    
+    <picture id="moon-image">
+      <source srcset="assets/destination/image-moon.webp" type="image/webp">
+      <img src="assets/destination/image-moon.png" alt="the moon">
+    </picture>
+    <picture hidden id="mars-image">
+      <source srcset="assets/destination/image-mars.webp" type="image/webp">
+      <img src="assets/destination/image-mars.png" alt="the planet mars">
+    </picture>
+    <picture hidden id="europa-image">
+      <source srcset="assets/destination/image-europa.webp" type="image/webp">
+      <img src="assets/destination/image-europa.png" alt="the planet europa">
+    </picture>
+    <picture hidden id="titan-image">
+      <source srcset="assets/destination/image-titan.webp" type="image/webp">
+      <img src="assets/destination/image-titan.png" alt="the moon titan">
+    </picture>
+    
+    
+    <div class="tab-list underline-indicators flex" role="tablist" aria-label="About list">
+        <button aria-selected="true" role="tab" aria-controls="moon-tab" class="uppercase ff-sans-cond text-accent letter-spacing-2" tabindex="0" data-image="moon-image">Life</button>
+        <button aria-selected="false" role="tab" aria-controls="mars-tab" class="uppercase ff-sans-cond text-accent letter-spacing-2" tabindex="-1" data-image="mars-image">Skills</button>
+        <button aria-selected="false" role="tab" aria-controls="europa-tab" class="uppercase ff-sans-cond text-accent letter-spacing-2" tabindex="-1" data-image="europa-image">Europa</button>
+        <button aria-selected="false" role="tab" aria-controls="titan-tab" class="uppercase ff-sans-cond text-accent letter-spacing-2" tabindex="-1" data-image="titan-image">Titan</button>
+    </div>
+
+    <!-- The moon -->
+    <article class="About-info flow" id="moon-tab" tabindex="0" role="tabpanel">
+      <h2 class="fs-800 uppercase ff-serif">Life</h2>
+
+      <p>​​I grew up in a place called Macao, which was near the southwestern corner of the Pearl (Zhu) River. I first; however, lived in Canada. Though I was too young to
+      remember much of it. While I was there, I attended an international school called The International School of Macao. It is here where I began making connections, and developing myself.
+      I became immensely interested in the field of mathematics, and began taking a heavy liking towards gymnastics.   
+      </p>
+      
+      <div class="About-meta flex">
+        <div>
+          <h3 class="text-accent fs-200 uppercase">IDK</h3>
+          <p class="ff-serif uppercase">Stm.</p>
+        </div>
+        <div>
+          <h3 class="text-accent fs-200 uppercase">IDK</h3>
+          <p class="ff-serif uppercase">Stm.</p>
+        </div>
+      </div>
+    </article>
+    
+    <!-- Mars -->
+    <article hidden class="About-info flow" id="mars-tab" tabindex="0"  role="tabpanel">
+      <h2 class="fs-800 uppercase ff-serif">Skills</h2>
+
+      <p>Throughout my life, I have developed an immense skillset. I was in a school where competition was everything,
+      I had to try to be the best at everything I encountered. I picked up many hobbies, I began gymnastics at a young age, and
+      would train as many days as I could. I got better and better at math, I
+      </p>
+
+      <!-- By the time I was in grade eleven I had learned over 100 different types of gymnastics tricks/skills.
+      I also began working out during this time, to keep up with the pressure that gymnastics had on my body. During this time, I had
+      also began really engaging myself within the feild of mathematics. By the end of grade 11, I had already finished calculus 1, 2, and 3. I also
+      decided to learn anything that seemed particularly interesting within or related to the feild. Which inevitable led to me taking a quantum mechanics
+      and particle physics course during the summer. Whilst learning these difficult high level concepts, I wanted to start challenging myself a bit more.
+      So, naturally, I became gravitated towards solving more difficult problems and questions alongside creating my own. -->
+      
+      <div class="About-meta flex">
+        <div>
+          <h3 class="text-accent fs-200 uppercase">Avg. distance</h3>
+          <p class="ff-serif uppercase">225 mil. km</p>
+        </div>
+        <div>
+          <h3 class="text-accent fs-200 uppercase">Est. travel time</h3>
+          <p class="ff-serif uppercase">9 months</p>
+        </div>
+      </div>
+    </article>
+    
+    <!-- Europa -->
+    <article hidden class="About-info flow" id="europa-tab" tabindex="0"  role="tabpanel">
+      <h2 class="fs-800 uppercase ff-serif">Europa</h2>
+
+      <p>The smallest of the four Galilean moons orbiting Jupiter, Europa is a 
+  winter lover’s dream. With an icy surface, it’s perfect for a bit of 
+  ice skating, curling, hockey, or simple relaxation in your snug 
+  wintery cabin.</p>
+      <div class="About-meta flex">
+        <div>
+          <h3 class="text-accent fs-200 uppercase">Avg. distance</h3>
+          <p class="ff-serif uppercase">628 mil. km</p>
+        </div>
+        <div>
+          <h3 class="text-accent fs-200 uppercase">Est. travel time</h3>
+          <p class="ff-serif uppercase">3 years</p>
+        </div>
+      </div>
+    </article>
+    
+    <!-- Titan -->
+    <article hidden class="About-info flow" id="titan-tab" tabindex="0"  role="tabpanel">
+      <h2 class="fs-800 uppercase ff-serif">Titan</h2>
+
+      <p>The only moon known to have a dense atmosphere other than Earth, Titan 
+  is a home away from home (just a few hundred degrees colder!). As a 
+  bonus, you get striking views of the Rings of Saturn.</p>
+      
+      <div class="About-meta flex">
+        <div>
+          <h3 class="text-accent fs-200 uppercase">Avg. distance</h3>
+          <p class="ff-serif uppercase">1.6 bil. km</p>
+        </div>
+        <div>
+          <h3 class="text-accent fs-200 uppercase">Est. travel time</h3>
+          <p class="ff-serif uppercase">7 years</p>
+        </div>
+      </div>
+    </article>
+  </main>
+  
+<body>
+  <!--CONTACT-->
+  <div class="contact-me">
+    <p>Download The Code For This Site.</p>
+    <a class="button-two" onclick="window.location.href = 'https://ide.geeksforgeeks.org';">Here</a>
+  </div>
+  
+  <!--Footer Start-->
+  <footer>
+    <p>Jake Brockbank</p>
+    <p>For more content from me - please click on the links below:</p>
+    <div class="social">
+      <a onclick="window.location.href = 'https://www.instagram.com/jaketgm/'"><i class="fab fa-instagram"></i></a>
+      <a onclick="window.location.href = 'https://www.tiktok.com/@netrippersofficial'"><i class="fab fa-tiktok"></i></a>
+      <a onclick="window.location.href = 'https://www.youtube.com/channel/UCiYONsFGZtjrthACj1kPSIA'"><i class="fab fa-youtube"></i></a>
+    </div>
+    <p class="end">CopyRight By Jake Brockbank</p>
+  </footer>
+</body>
+</html>
+
+

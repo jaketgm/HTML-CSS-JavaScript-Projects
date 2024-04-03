@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/mySite_favicon-32x32.png">
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Bellefair&family=Barlow:wght@400;700&display=swap"
+      rel="stylesheet">
+      
+  <!-- Our custom CSS -->
+  <link rel="stylesheet" href="index.css">
+  <title>My Site</title>
+  <script src="index.js" defer></script>
+</head>
+<body class="home">
+  <!-- <a class="skip-to-content" href="#main">Skip to content</a> -->
+  <header class="primary-header flex">
+    <div>
+      <img src="./assets/shared/logo.svg" alt="space tourism logo" class="logo">
+    </div>
+    <button class="mobile-nav-toggle" aria-controls="primary-navigation"><span class="sr-only" aria-expanded="false">Menu</span></button>
+    <nav>
+        <ul id="primary-navigation" data-visible="false" class="primary-navigation underline-indicators flex">
+            <li class="active"><a class="ff-sans-cond uppercase text-white letter-spacing-2" href="index.html"><span aria-hidden="true">00</span>Home</a>
+            <li><a class="ff-sans-cond uppercase text-white letter-spacing-2" href="About.html"><span aria-hidden="true">01</span>About</a>
+            <li><a class="ff-sans-cond uppercase text-white letter-spacing-2" href="Education.html"><span aria-hidden="true">02</span>Education</a>
+            <li><a class="ff-sans-cond uppercase text-white letter-spacing-2" href="Sports.html"><span aria-hidden="true">03</span>Sports</a>
+        </ul>
+    </nav>
+  </header>
+  
+  <main id="main" class="grid-container grid-container--home">
+    <div>
+      <h1 class="text-accent fs-500 ff-sans-cond uppercase letter-spacing-1">So, who am I?
+      <span class="d-block fs-900 ff-serif text-white">Jake</span></h1>
+      
+      <p>My name is Jake Brockbank, I'am currently 18 years old and studying in university. The purpose of this site
+      is to inform, you the reader, a little more about me and my life. You will see the accolades I have achieved alongside the things I have learned! </p>
+    </div>
+    <div>
+      <a href="About.html" class="large-button uppercase ff-serif text-dark bg-white">Explore</a>
+    </div>
+  </main>
+
+
+</body>
+</html>
