@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+        <meta http-equiv="Cache-Control" content="no-cache">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="mobile-web-app-capable" content="yes">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Bellefair&family=Barlow:wght@400;700&display=swap"
+            rel="stylesheet">
+
+        <title>fluidTwoPage</title>
+        <meta name="description" content="A WebGL fluid simulation that works in mobile browsers.">
+
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Webgl Fluid Simulation">
+        <meta property="og:description" content="A WebGL fluid simulation that works in mobile browsers.">
+        <style>
+            :root 
+            {
+                /* colors */
+                --clr-dark: 230 35% 7%;
+                --clr-light: 231 77% 90%;
+                --clr-white: 0 0% 100%;
+                /* font-sizes */
+                --fs-900: clamp(5rem, 8vw + 1rem, 9.375rem);
+                --fs-800: 3.5rem;
+                --fs-700: 1.5rem;
+                --fs-600: 1rem;
+                --fs-500: 1rem;
+                --fs-400: 0.9375rem;
+                --fs-300: 1rem;
+                --fs-200: 0.875rem;
+                /* font-families */
+                --ff-serif: "Bellefair", serif;
+                --ff-sans-cond: "Barlow Condensed", sans-serif;
+                --ff-sans-normal: "Barlow", sans-serif;
+            }
+
+            @media (min-width: 35em) 
+            {
+                :root 
+                {
+                    --fs-800: 5rem;
+                    --fs-700: 2.5rem;
+                    --fs-600: 1.5rem;
+                    --fs-500: 1.25rem;
+                    --fs-400: 1rem;
+                }
+            }
+
+            /* colors */
+            .bg-dark { background-color: hsl( var(--clr-dark) );}
+            .bg-accent { background-color: hsl( var(--clr-light) );}
+            .bg-white { background-color: hsl( var(--clr-white) );}
+
+            .text-dark { color: hsl( var(--clr-dark) );}
+            .text-accent { color: hsl( var(--clr-light) );}
+            .text-white { color: hsl( var(--clr-white) );}
+
+            * 
+            {
+                user-select: none;
+            }
+
+            html, body 
+            {
+                overflow: hidden;
+                background-color: #f08b8b;
+            }
+
+            body 
+            {
+                margin: 0;
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                background-size: 100% 100%;
+            }
+
+            canvas 
+            {
+                width: 100%;
+                height: 100%;
+            }
+
+            #canvas1 
+            {
+                position: absolute;
+                background: rgb(246, 197, 197);
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+            }
+
+            .dg 
+            {
+                opacity: 0.9;
+            }
+
+            .dg .property-name 
+            {
+                overflow: visible;
+            }
+
+            @font-face 
+            {
+                font-family: 'iconfont';
+                src: url('iconfont.ttf') format('truetype');
+            }
+
+            .bigFont 
+            {
+                font-size: 150%;
+                color: #8C8C8C;
+            }
+
+            .cr.function.appBigFont 
+            {
+                font-size: 150%;
+                line-height: 27px;
+                color: #A5F8D3;
+                background-color: #023C40;
+            }
+
+            .cr.function.appBigFont .property-name 
+            {
+                float: none;
+            }
+
+            .cr.function.appBigFont .icon 
+            {
+                position: sticky;
+                bottom: 27px;
+            }
+
+            .icon 
+            {
+                font-family: 'iconfont';
+                font-size: 130%;
+                float: right;
+            }
+
+            .twitter:before 
+            {
+                content: 'a';
+            }
+
+            .github:before 
+            {
+                content: 'b';
+            }
+
+            .app:before 
+            {
+                content: 'c';
+            }
+
+            .discord:before 
+            {
+                content: 'd';
+            }
+
+            /* nav for mobile */
+            .primary-navigation 
+            {
+                --gap: clamp(1.5rem, 5vw, 3.5rem);
+                --underline-gap: 2rem;
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                background: hsl( var(--clr-white) / 0.05);
+                backdrop-filter: blur(1.5rem);
+            }
+
+            .primary-navigation a 
+            {
+                text-decoration: none;
+            }
+
+            .primary-navigation a > span 
+            {
+                font-weight: 700;
+                margin-right: .5em;
+            }
+
+            .nav-toggle 
+            {
+                display: none;
+            }
+
+            @media (max-width: 35rem) 
+            {
+                .primary-navigation 
+                {
+                    --underline-gap: .5rem;
+                    position: fixed;
+                    z-index: 1000;
+                    inset: 0 0 0 30%;
+                    list-style: none;
+                    padding: min(20rem, 15vh) 2rem;
+                    margin: 0;
+                    flex-direction: column;
+                    transform: translateX(100%);
+                    transition: transform 500ms ease-in-out;
+                }
+            
+                .primary-navigation[data-visible="true"] 
+                {
+                    transform: translateX(0);
+                }
+
+                .primary-navigation.underline-indicators > .active 
+                {
+                    border: 0;
+                }
+
+                .nav-toggle 
+                {
+                    display: block;
+                    position: absolute;
+                    z-index: 2000;
+                    right: 1rem;
+                    top: 2rem;
+                    background: transparent;
+                    background-image: url(./ASSETS/icon-hamburger.svg);
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    width: 1.5rem;
+                    aspect-ratio: 1;
+                    border: 0;
+                }
+
+                .nav-toggle[aria-expanded="true"] 
+                {
+                    background-image: url(./ASSETS/icon-close.svg);
+                }
+
+                .nav-toggle:focus-visible 
+                {
+                    outline: 5px solid white;
+                    outline-offset: 5px;
+                }
+            }
+
+            @media (min-width: 35em) 
+            {
+                .primary-navigation 
+                {
+                    padding-inline: clamp(3rem, 7vw, 7rem);
+                }
+            }
+
+            /* Color selector */
+            .color 
+            {
+                width: 100%;
+                background-color: rgb(0, 0, 0);
+            }
+        
+            .color > h3 
+            {
+                margin: 0;
+            }
+        
+            .color > span 
+            {
+                display: inline-block;
+                width:  30px;
+                height: 30px;
+                margin: 10px;
+                background-color: rgb(0, 0, 0);
+            }
+        
+            #color1 
+            {
+                background-color: green;
+            }
+            #color2 
+            {
+                background-color: pink;
+            }
+        </style>
+    </head>
+<body>    
+    <canvas id="canvas1"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas1');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const particlesArray = [];
+        let hue = 0;
+
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        const mouse = {
+            x: undefined,
+            y: undefined,
+        }
+
+        canvas.addEventListener('click', function(event) {
+            mouse.x = event.x;
+            mouse.y = event.y;
+            for (let i = 0; i < 2; i++) 
+            {
+                particlesArray.push(new Particle());
+            }
+        });
+
+        canvas.addEventListener('mousemove', function(event) {
+            mouse.x = event.clientX;
+            mouse.y = event.clientY;
+            for (let i = 0; i < 5; i++) 
+            {
+                particlesArray.push(new Particle());
+            }
+        })
+
+        class Particle 
+        {
+            constructor(color) 
+            {
+                this.x = mouse.x;
+                this.y = mouse.y;
+                this.size = Math.random() * 15 + 1;
+                this.speedX = Math.random() * 3 - 1.5;
+                this.speedY = Math.random() * 3 - 1.5;
+                // this.color = 'hsl(' + hue + ', 100%, 50%)'; /* normal gradient default color */
+                this.color = 'linear-gradient(to right, black, white)'; /* normal gradient default color */
+
+            }
+            update() 
+            {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.size > 0.2) this.size -= 0.1;
+            }
+            draw(x, y) 
+            {
+                const a = 2 * Math.PI / 6;
+                const r = 50;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                for (let i = 0; i < 6; i++) 
+                {
+                    ctx.lineTo(x + r * Math.sinh(a * i), y + r * Math.tanh(a * i));
+                }
+                ctx.fill();
+            }
+        }
+
+        function handleParticles() 
+        {
+            for (let i = 0; i < particlesArray.length; i++) 
+            {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+                for (let j = i; j < particlesArray.length; j++) 
+                {
+                    const dx = particlesArray[i].x - particlesArray[j].x;
+                    const dy = particlesArray[i].y - particlesArray[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    const value = Math.sin(distance);
+                    if (distance < 100) 
+                    {
+                        ctx.beginPath();
+                        ctx.strokeStyle = particlesArray[i].color;
+                        ctx.lineWidth = value;
+                        ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                        ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                        ctx.stroke();
+                        ctx.closePath();
+                    }
+                }
+                if (particlesArray[i].size <= 0.3) 
+                {
+                    particlesArray.splice(i, 1);
+                    i--;
+                }
+            }
+        }
+
+        function animate() 
+        {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            handleParticles();
+            hue+=2;
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
