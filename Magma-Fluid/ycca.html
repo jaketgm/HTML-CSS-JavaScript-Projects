@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>YCCA Conversion</title>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+		<script>
+			var fileUrl = 'output';
+			fetch(fileUrl)
+				.then(response => response.arrayBuffer())
+				.then(buffer => {
+					var data = new Uint8Array(buffer);
+					var pixelData = [];
+					for (var i = 0; i < data.length; i += 4) 
+					{
+						var y = data[i];
+						var cb = data[i + 1];
+						var cr = data[i + 2];
+						var a = data[i + 3];
+						const r = Math.max(0, Math.min(255, Math.round(y + 1.402 * (cr - 128))));
+						const g = Math.max(0, Math.min(255, Math.round(y - 0.34414 * (cb - 128) - 0.71414 * (cr - 128))));
+						const b = Math.max(0, Math.min(255, Math.round(y + 1.772 * (cb - 128))));    
+						pixelData.push({ x: i / 4, r: r, g: g, b: b });
+					}
+					console.table(pixelData);
+				});
+		</script>
+	</body>
+</html>
